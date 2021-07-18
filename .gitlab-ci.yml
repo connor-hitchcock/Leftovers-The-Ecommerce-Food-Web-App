@@ -1,0 +1,210 @@
+stages:
+  - npm-dependencies
+  - build
+  - test
+  - sonarqube
+  - deploy
+
+tag_checker:
+  stage: build
+  script:
+    - python3 tag_checker.py $CI_COMMIT_TAG
+  only:
+    - tags
+
+npm-install:
+  stage: npm-dependencies
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+  script:
+    - cd frontend
+    - npm install
+
+junit:
+  stage: test
+  artifacts:
+    paths:
+      - backend/build
+  script:
+    - cd backend
+    - ./gradlew test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "dev"'
+      when: always
+    - changes:
+      - backend/*.gradle
+      - backend/src/**/application.properties
+      - backend/src/main/**/*
+      - backend/src/test/**/*.csv
+      - backend/src/test/java/org/**/*.java
+      when: always
+
+cucumber:
+  stage: test
+  artifacts:
+    paths:
+      - backend/build
+  script:
+    - cd backend
+    - ./gradlew cucumber
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "dev"'
+      when: always
+    - changes:
+      - backend/*.gradle
+      - backend/src/**/application.properties
+      - backend/src/main/**/*
+      - backend/src/test/**/*.csv
+      - backend/src/test/**/*.feature
+      - backend/src/test/java/cucumber/**/*.java
+      when: always
+
+jest:
+  stage: test
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+    policy: pull
+  artifacts:
+    paths:
+      - frontend/coverage
+  script:
+    - cd frontend
+    - npm run test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "dev"'
+      when: always
+    - changes:
+      - frontend/package.json
+      - frontend/package-lock.json
+      - frontend/babel.config.js
+      - frontend/tsconfig.json
+      - frontend/vue.config.js
+      - frontend/tests/**/*
+      - frontend/src/**/*
+      when: always
+
+# Export sonarqube (static code analysis) reports
+dev-sonarqube:
+  stage: sonarqube
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+    policy: pull
+  script:
+    - cd frontend
+    - npm run sonarqube
+    - cd ../backend
+    - ./gradlew jacocoTestReport jacocoTestCoverageVerification sonarqube
+  only:
+    - dev
+
+# builds all branches, except dev and master
+branch-build:
+  stage: build
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+    policy: pull
+  script:
+    - cd frontend
+    - npm run build
+    - cd ../backend
+    - ./gradlew bootJar
+  artifacts:
+    paths:
+      - frontend/dist
+      - backend/build/libs
+  except:
+    - tags
+    - master
+    - dev
+
+deploy-staging-backend:
+  stage: deploy
+  script:
+    - cd backend
+    - chmod +x ../runner/copy-environment.sh
+    - ../runner/copy-environment.sh $DB_URL_STAGING
+    - ./gradlew bootJar
+    - rm -rf /home/gitlab-runner/staging-backend/ || true
+    - mkdir /home/gitlab-runner/staging-backend/
+    - cp -r ./build/libs /home/gitlab-runner/staging-backend
+    - cp ../runner/staging-backend.sh /home/gitlab-runner/staging-backend.sh
+    - chmod u+x /home/gitlab-runner/staging-backend.sh
+    - sudo systemctl restart seng302-staging-backend
+  artifacts:
+    paths:
+      - backend/build/libs
+  only:
+    - dev
+
+deploy-staging-frontend:
+  stage: deploy
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+    policy: pull
+  script:
+    - cd frontend
+    - npm run build
+    - rm -rf /home/gitlab-runner/staging-frontend/ || true
+    - mkdir /home/gitlab-runner/staging-frontend/
+    - cp -r ./dist/ /home/gitlab-runner/staging-frontend
+    - cp ../runner/staging-frontend.sh /home/gitlab-runner/staging-frontend.sh
+    - chmod u+x /home/gitlab-runner/staging-frontend.sh
+    - sudo systemctl restart seng302-staging-frontend
+  artifacts:
+    paths:
+      - frontend/dist
+  only:
+    - dev
+
+deploy-production-backend:
+  stage: deploy
+  script:
+    - cd backend
+    - chmod +x ../runner/copy-environment.sh
+    - ../runner/copy-environment.sh $DB_URL
+    - ./gradlew bootJar
+    - rm -rf /home/gitlab-runner/production-backend/ || true
+    - mkdir /home/gitlab-runner/production-backend/
+    - cp -r ./build/libs /home/gitlab-runner/production-backend
+    - cp ../runner/production-backend.sh /home/gitlab-runner/production-backend.sh
+    - chmod u+x /home/gitlab-runner/production-backend.sh
+    - sudo systemctl restart seng302-production-backend
+  artifacts:
+    paths:
+      - backend/build/libs
+  only:
+    - tags
+    - master
+
+deploy-production-frontend:
+  stage: deploy
+  cache:
+    key: node-modules
+    paths:
+      - frontend/node_modules
+    policy: pull
+  script:
+    - cd frontend
+    - npm run build-prod
+    - rm -rf /home/gitlab-runner/production-frontend/ || true
+    - mkdir /home/gitlab-runner/production-frontend/
+    - cp -r ./dist/ /home/gitlab-runner/production-frontend
+    - cp ../runner/production-frontend.sh /home/gitlab-runner/production-frontend.sh
+    - chmod u+x /home/gitlab-runner/production-frontend.sh
+    - sudo systemctl restart seng302-production-frontend
+  artifacts:
+    paths:
+      - frontend/dist
+  only:
+    - tags
+    - master

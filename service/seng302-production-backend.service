@@ -1,0 +1,13 @@
+[Unit]
+Description=SENG302 Production Backend service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=gitlab-runner
+WorkingDirectory=/home/gitlab-runner
+ExecStart=/usr/bin/bash production-backend.sh
+
+[Install]
+WantedBy=multi-user.target

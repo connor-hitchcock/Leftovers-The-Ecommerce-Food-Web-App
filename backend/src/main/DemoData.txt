@@ -1,0 +1,8 @@
+Andy|Percy|Elliot|Ando|123andyelliot@gmail.com|password123|108,Albert Road,Ashburton,Christchurch,New Zealand,Canterbury,8041|1987-04-12
+Henry|Andy|Bryson|Harry|harry@webmail.com|goodpassword6|50,Buchanan Street,Ashburton,Christchurch,New Zealand,Canterbury,8041|1974-10-30
+Kirsty|Annabel|Williams|Big K|catsarecool@gmail.com|biggestcatlover7|18,Chestnut Crescent,Ashburton,Christchurch,New Zealand,Canterbury,8041|1995-06-02
+Mildred|Rachel|Mcdonald|Millie|mildred.mcdonald@vodafone.co.nz|mildredmcdonald123|7,Mowbray Street,Ashburton,Christchurch,New Zealand,Canterbury,8041|2001-05-13
+Carlos|Tom|Defoe|Carl|carl@gmail.com|carl1234|49,Dunders Street,Ashburton,Christchurch,New Zealand,Canterbury,8041|2006-01-26
+Edith|Petra|Robinson|Eddy|eddy.robinson@outlook.com|edithrobinson123|66,Edgeware Road,Ashburton,Christchurch,New Zealand,Canterbury,8041|1983-12-03
+Donna|Anna|Frank|Nana|donna-frank@hotmail.com|francesfrank123|71,Ferrymead Road,Timaru,Christchurch,New Zealand,Canterbury,8041|1998-07-16
+Andy|Peter|Graham|Jerry|andy.graham@gmail.com|georgegraham123|13,Gordon Ave,Waimate,Christchurch,New Zealand,Canterbury,8041|2002-03-19

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarketplaceCard.vue Must match snapshot 1`] = `
+<div class="d-flex flex-column v-card v-sheet theme--light" style="min-height: 250px;">
+  <div class="v-card__title my-n1 title">
+    test_card_title
+  </div>
+  <div class="v-card__text my-n2 flex-grow-1 d-flex flex-column justify-space-between">
+    <div><strong>
+        From test_district, test_city
+        <br></strong>
+      <div class="d-flex justify-space-between flex-wrap"><span class="mr-1"><em>By test_firstname test_lastname</em></span> <span>
+          Posted 10 Mar 2021
+        </span></div>
+      test_card_description
+    </div>
+    <div class="v-flex mx-n1"><span class="mx-1 my-1 v-chip theme--light v-size--small primary"><span class="v-chip__content">
+        test_keyword_1
+      </span></span><span class="mx-1 my-1 v-chip theme--light v-size--small primary"><span class="v-chip__content">
+        test_keyword_2
+      </span></span></div>
+  </div>
+</div>
+`;

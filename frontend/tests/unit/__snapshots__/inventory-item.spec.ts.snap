@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InventoryItem.vue Must match snapshot 1`] = `
+<div class="v-card v-sheet theme--light" style="max-width: 1100px;">
+  <div class="container container--fluid">
+    <div class="row">
+      <div align="center" justify="center" class="col-sm-12 col-md-3 col-auto" style="width: 100%;"><i aria-hidden="true" class="v-icon notranslate mdi mdi-image theme--light" style="font-size: 250px;"></i></div>
+      <div class="col">
+        <div class="row">
+          <div class="auto pa-0 col-sm-10 col-md-10 col">
+            <div class="v-card__title pb-0">
+              test_product_name
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 col-auto">
+            <div class="v-card__actions pb-0"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-9 col-auto">
+            <div class="row">
+              <div class="v-card__text product-fields pb-0"><strong>Product Code</strong> <br>
+                test_product_code
+              </div>
+            </div>
+            <div class="row"><span><div class="v-card__text pb-0 product-fields"><strong>Description</strong> <br>
+                    test_product_description
+                  </div></span></div>
+            <div class="row">
+              <div class="v-card__text product-fields"><strong>Manufacturer</strong> <br>
+                test_product_manufacturer
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="col-sm-12 col-md-3 col-auto">
+            <div class="row">
+              <div class="v-card__text pb-0 product-fields"><strong>Quantity</strong> <br>
+                /4
+              </div>
+            </div>
+            <div class="row">
+              <div class="v-card__text pb-0 product-fields"><strong>Price per Item</strong> <br>
+                test_currency_symbol7 test_currency_code
+              </div>
+            </div>
+            <div class="row">
+              <div class="v-card__text pb-0 product-fields"><strong>Total Price</strong> <br>
+                test_currency_symbol99 test_currency_code
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+      </div>
+      <div class="col col-auto">
+        <div class="v-timeline timeline theme--light" clipped="">
+          <div class="v-timeline-item v-timeline-item--after theme--light">
+            <div class="v-timeline-item__body">
+              <div class="timeline-content">
+                11 May 2021
+              </div>
+            </div>
+            <div class="v-timeline-item__divider">
+              <div class="v-timeline-item__dot v-timeline-item__dot--small">
+                <div class="v-timeline-item__inner-dot green"></div>
+              </div>
+            </div>
+            <div class="v-timeline-item__opposite">
+              <div class="timeline-label">Manufactured</div>
+            </div>
+          </div>
+          <div class="v-timeline-item v-timeline-item--after theme--light">
+            <div class="v-timeline-item__body">
+              <div class="timeline-content">
+                12 May 2021
+              </div>
+            </div>
+            <div class="v-timeline-item__divider">
+              <div class="v-timeline-item__dot v-timeline-item__dot--small">
+                <div class="v-timeline-item__inner-dot grey"></div>
+              </div>
+            </div>
+            <div class="v-timeline-item__opposite">
+              <div class="timeline-label">Created</div>
+            </div>
+          </div>
+          <div class="v-timeline-item v-timeline-item--after theme--light">
+            <div class="v-timeline-item__body">
+              <div class="timeline-content">
+                13 May 2021
+              </div>
+            </div>
+            <div class="v-timeline-item__divider">
+              <div class="v-timeline-item__dot v-timeline-item__dot--small">
+                <div class="v-timeline-item__inner-dot yellow"></div>
+              </div>
+            </div>
+            <div class="v-timeline-item__opposite">
+              <div class="timeline-label">Sell By</div>
+            </div>
+          </div>
+          <div class="v-timeline-item v-timeline-item--after theme--light">
+            <div class="v-timeline-item__body">
+              <div class="timeline-content">
+                14 May 2021
+              </div>
+            </div>
+            <div class="v-timeline-item__divider">
+              <div class="v-timeline-item__dot v-timeline-item__dot--small">
+                <div class="v-timeline-item__inner-dot orange"></div>
+              </div>
+            </div>
+            <div class="v-timeline-item__opposite">
+              <div class="timeline-label">Best Before</div>
+            </div>
+          </div>
+          <div class="v-timeline-item v-timeline-item--after theme--light" f="">
+            <div class="v-timeline-item__body">
+              <div class="timeline-content">
+                15 May 2021
+              </div>
+            </div>
+            <div class="v-timeline-item__divider">
+              <div class="v-timeline-item__dot v-timeline-item__dot--small">
+                <div class="v-timeline-item__inner-dot red"></div>
+              </div>
+            </div>
+            <div class="v-timeline-item__opposite">
+              <div class="timeline-label">Expiry</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-end"><button type="button" class="sale-item-but v-btn v-btn--outlined v-btn--rounded theme--light v-size--default primary--text"><span class="v-btn__content">
+            Create Sale Item
+          </span></button><span class="v-tooltip v-tooltip--top"><!----></span></div>
+  </div>
+</div>
+`;
